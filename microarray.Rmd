@@ -1,0 +1,862 @@
+---
+title: "MICROARRAY ANALYSIS"
+author: "ABINADER Oliver"
+date: "Monday, September 2nd, 2019"
+output:
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Statistics For Microarray
+
+## About The Microarray Experiment
+
+### Overview
+
+<div style="text-align: justify">I will be focusing on the physical design of a microarray experiment. The experimental set-up is the proper planning of sequential and sometimes parallel activities for the smooth running of the scientific discovery process. **What is the microarray experiment about? It involves an experiment of the preterm birth, whereby the main aim was to identify which genes are being expressed by a population of cells or tissues, by analyzing its expressed messenger ribonucleic acids (mRNAs).**</div>
+
+### About The Deoxyribonucleic & Ribonucleic Acids
+
+<div style="text-align: justify">The genome in the nucleus of a eukaryote contains the instructions for the activity of a cell. These instructions are first transcribed into RNA and then finally translated into proteins using a four-letter alphabet consisting of nucleotides. The microarray is particularly suitable for measuring the transcription levels of different genes in different cells or conditions. The experimental set-up of a microarray experiment is a long and intricate process that involves several steps.
+
+DNA is described as a double helix. It looks like a twisted long ladder. The sides of the 'ladder' are formed by a backbone of sugar and phosphate molecules, and the 'crosspieces' consist of two nucleotide bases joined weakly in the middle by hydrogen bonds. On either side of the 'rungs' lie complementary bases. Every Adenine base (A) is flanked by a Thymine (T) base, whereas every Guanine base (G) has a Cytosine partner (C) on the other side. Therefore, the strands of the helix are each other's complement. It is this basic chemical fact of complementarity that lies at the basis of each microarray.
+
+**Microarrays have many single strands of a gene sequence segment attached to their surface, known as probes.** This attachment is sometimes achieved by physically spotting them on the array and sometimes by immobilizing them to the quartz wafer surface via hydroxylation, as in Affymetrix arrays. In the future, undoubtedly, other media will become available. The single strands are waiting for complementary strands to bond hybridize and stick to the surface of the array. RNA delivers DNA's genetic message to the cytoplasm of a cell where proteins are made. Chemically speaking, RNA is similar to a single strand of DNA. 
+
+**The purpose of a microarray is to measure for each gene in the genome the amount of message that was broadcast through the RNA in the case compared to the control sample.** Roughly speaking, color-labelled RNA is applied to the microarray, and if the RNA finds its complementary sibling on the array, then it naturally binds and sticks to the array. By measuring the amount of color emitted by the array, one can get a sense of how much RNA was produced for each gene (see the below figure).</div><br />
+
+```{r fig.align="center",echo=FALSE, message=FALSE,warning=FALSE}
+knitr::include_graphics("/Users/fatbobmacpro/Desktop/oliver/pics/pic1.png")
+```
+
+### About The Complementary DNA (cDNA)
+
+<div style="text-align: justify">**Although some microarray experiments have been performed using RNA directly, most scientists prefer to work with the more stable cDNA molecule, which is the inverse copy of RNA.** It is produced by a little inverse copy machine called an enzyme. It acts by copying a T for each A, an A for each T or U, a C for each G and a G for each C. In this way, it creates the inverse image of usual RNA. This latter is a single strand of nucleotides, that is, effectively a string of four letters, A, U, G and C. Naturally, these letters tend to bind to T, A, C and G, respectively, when they are present. This is the principle behind microarray technology. To avoid RNA binding to itself, it is heated up to 65 degrees celsius. In this way, any self-hybridizations of the RNA that has taken place is undone. After 5 min, the tubes are quickly cooled by putting them into ice for 2 minutes. In this way, any rehybridization of the RNA is prevented because the temperature is too low.
+
+In all microarray experiments, it is essential that the biological material should be selected under controlled conditions. Failure to do so might increase spurious variation as a result of some uncontrolled nuisance factor. A total of 100 micrograms of RNA should be obtained for both samples. This quantity is sufficient for a single microarray. Modern techniques allow one to do the experiment even with a smaller quantity of RNA.
+
+In this figure, I obtain a copy  of the double stranded cDNA from the original mRNA that was purifued and lysed from cells.</div><br />
+
+```{r fig.align="center",echo=FALSE, message=FALSE,warning=FALSE}
+knitr::include_graphics("/Users/fatbobmacpro/Desktop/oliver/pics/pic3.png")
+```
+
+### Obtaining The Labelled cDNA
+
+<div style="text-align: justify">**The end product of a microarray experiment is an image with gene spots of varying intensity for each of the treatment and the control samples.** A smart way of making genes 'visible' has been developed by adding a dye to the cDNA so that the amount of cDNA that sticks to the microarray slide could be measured via an optical scanner. 
+In order to build cDNA, the enzyme needs the nucleotide building blocks, A, T, G and C. Rather than adding 25 microliters of plain C nucleotides, the idea is to add 23 microliters of C's that have a dye molecule attached to them, as well as 2 microliters of plain C's. Each time the enzyme needs a C to copy a G, it will most likely use one with a dye molecule attached. Therefore, the number of dye molecules present in the cDNA is proportional to the number of G's in the RNA, which is roughly proportional to the number of transcribed copies of the gene, as well as the length of the transcript. 
+
+Two different dyes Cy3 and Cy5 are used to distinguish treatment and control samples. The reverse transcription can finally start when a reverse transcriptase is added. The enzyme is stored at low temperatures because it degrades quickly at higher temperatures. It performs its best RNA copying activity, however, when it is put in a 42 degrees celsius environment. The control and treatment samples are brought up to this temperature immediately prior to adding the enzyme. Then the enzyme immediately starts its job. If enzyme degradation goes faster than normal, it is sometimes advisable to add some additional enzyme after one hour. Otherwise, the enzyme is allowed to do its job for a total of two hours. At this time, enough cDNA is produced to be applied to the microarray.</div>
+
+### Preparing The cDNA Mixture For Hybridization
+
+<div style="text-align: justify">Not all the loose bases that were added into the RNA sample have been reverse transcribed into cDNA. These loose bases could possibly hybridize spuriously with the immobilized DNA on the array, and it is therefore sensible to filter them out. The mixture is passed through a membrane. The long strands of cDNA stick to the membrane, whereas the loose bases pass through. Possibly, also the RNA sticks to the membrane, but since it is not labelled, this is immaterial. By turning the membrane, the other way around, the labelled cDNA is recovered. The cDNA mixture is then dried down in a centrifuge in order to replace the liquid by a hybridization buffer. This hybridization buffer facilitates the kinetics of the actual hybridization, that is, the attachment of the cDNA produced from the sample of interest to the DNA material on the slide. So far, all the steps have been performed for the treatment and control sample side by side. At this point, the two samples are combined in, hopefully, exactly equal quantities. The resulting mixture is then ready for hybridization to a single microarray.
+
+Note that the cDNA, when left at room temperature for a while, may start to fold onto itself if there are complementary strands in the cDNA sequence. This would inhibit hybridization to the array, and therefore steps have to be undertaken to avoid this folding while the microarray is being prepared. **By heating the cDNA mixture to 85 degrees celsius for 5 minutes and then shock freezing it by putting it into ice, the self-folding of the cDNA is prevented.**</div>
+
+### Slide Hybridization
+
+<div style="text-align: justify">**Before applying the cDNA sample, the microarray is washed with a mixture of Sodium Chloride and Sodium Citrate (SSC) and Sodium dodecyl Sulfate (SDS). Then with a pipette the cDNA mixture containing both control and treatment samples is applied to the slide.** 
+By putting a hydrophobic coverslip on top of the mixture, the cDNA is evenly spread over the microarray and any air bubbles disappear. The slide is then mounted in a hybridization chamber, fixed and put in a dark environment at 42 degrees celsius for 10 to 16 hours before visualization. During this time, the actual process of interest takes place: the cDNA, which was applied to the slide, binds with complementary strands on the array. The number of matches will eventually determine the color intensity of the scanned slide and give an indication of the amount of RNA transcript of that gene within the sample. After the hybridization process has been completed, it is essential to remove all the labelled cDNA that did not hybridize to the slide. If sufficient care is not taken in order to remove it, the dye that is attached to that cDNA may give a spurious signal. For that purpose, the microarray is washed several times with different concentrations of SSC. **Finally, the microarray is dried and is ready to be scanned.**</div>
+
+## Affymetrix Microarray Workflow
+
+### Introduction
+
+<div style="text-align: justify">In this article, I will walk through an end-to-end Affymetrix microarray differential expression workflow using Bioconductor packages. This workflow is directly applicable to current gene type arrays. The data analyzed here is a typical clinical microarray data set that compares spontaneous preterm birth with term delivery. **I will start from the raw data which is an ExpressionSet object (CEL files), show how to import them into a Bioconductor ExpressionSet, perform quality control and normalization and finally differential gene expression (DGE) analysis, followed by some enrichment analysis.**</div>
+
+### Background Data Information
+
+<div style="text-align: justify">The raw CEL files are produced by the array scanner software and contain the measured probe intensities.
+
+Each dataset at ArrayExpress is stored according to the MAGE-TAB (MicroArray Gene Expression Tabular) specifications as a collection of tables bundled with the raw data. <u>The MAGE-TAB format specifies up to five different types of files:</u> Investigation Description Format (IDF) contains top level information about the experiment including title, description, submitter contact details and protocols. Array Design Format (ADF). Sample and Data Relationship Format (SDRF) contains essential information on the experimental samples.
+The ExpressionSet class is designed to combine several different sources of information into a single convenient structure. An ExpressionSet can be manipulated and is the input to or output of many Bioconductor functions.</div>
+
+### The ExpressionSet Class
+
+<div style="text-align: justify">Before I’ll move on to the actual raw data import, I will briefly introduce the ExpressionSet class contained in the Biobase package. It is commonly used to store microarray data in Bioconductor. The ExpressionSet class is designed to combine several different sources of information into a single convenient structure.<br /><br />The data in an ExpressionSet consist of:<br/>
+<u>1)AssayData:</u> Expression data from microarray experiments with microarray probes in rows and sample identifiers in columns.<br/><br/>
+<u>2)Metadata:</u><br/>
+<u>a)PhenoData:</u> A description of the samples in the experiment with sample identifiers in rows and description elements in columns; holds the content of the SDRF file.<br/>
+<u>b)FeatureData:</u> metadata about the features on the chip or technology used for the experiment with same rows as assayData by default and freely assignable columns.<br/>
+<u>c)Further annotations for the features</u><br/><br/>
+<u>3)ExperimentData:</u> A flexible structure to describe the experiment.<br/>
+
+One should keep in mind that the rownames of the phenoData have to match the column names of the assay data, while the row names of the assay data have to match the row names of the featureData. This is illustrated in the following figure.</div><br />
+
+```{r fig.align="center",echo=FALSE, message=FALSE,warning=FALSE}
+knitr::include_graphics("/Users/fatbobmacpro/Desktop/oliver/pics/un.png")
+```
+
+### Pipeline Description
+
+#### Data Importation
+
+<div style="text-align: justify">The analysis of affymetrix arrays starts with CEL files. These are the result of the processing of the raw image files containing estimated probe intensity values using the affymetrix software. To look at the data, I may use the pData() function from the Biobase package directly accesses the phenoData in the Eset.</div>
+
+#### Raw Data Quality Control 
+
+<div style="text-align: justify">The expression intensity values are in the assayData sub-object exprs and can be accessed by the exprs() function. The rows represent the microarray probes while the columns represent one microarray. I’ll also represent the probe intensities via a boxplot graph with one box per individual microarray. Note that the boxplot() function, can take expression sets as argument. It accesses the expression data and performs a log2-transformation by default. I also draw histograms of some microarrays.</div>
+
+### Robust Multi-array Average
+
+<div style="text-align: justify">The standard method for normalization is RMA. This latter is one of the few normalization methods that only uses the PM probes:<br />
+<u>Background correction to correct for spatial variation within individual arrays:</u> a background-corrected intensity is calculated for each PM probe in such a way that all background corrected intensities are positive.<br />
+<u>Log transformation to improve the distribution of the data:</u> the base-2 logarithm of the background corrected intensity is calculated for each probe. The log transformation will make the data less skewed and more normally distributed and provide an equal spread of up and down regulated expression ratios.<br />
+<u>Quantile normalization to correct for variation between the arrays:</u> equalizes the data distributions of the arrays and make the samples completely comparable.<br />
+<u>Probe normalization to correct for variation within probe sets:</u> equalizes the behavior of the probes between the arrays and combines normalized data values of probes from a probe set into a single value for the whole probe set.</div><br />
+
+#### Linear Models
+
+<div style="text-align: justify">In order to analyze which genes are differentially expressed between SPTB (inclusing sPTD & PPROM) and TERM DELIVERY (Control), I’ll have to fit a linear model to our expression data. Linear models are the workhorse for the analysis of experimental data. They can be used to analyze almost arbitrarily complex designs; however, they also take a while to learn and understand and a thorough description is beyond the scope of this workflow. 
+
+<u>Linear models for microarrays:</u> I will now apply linear models to microarrays. Specifically, I’ll discuss how to use the limma package for differential expression analysis. The package is designed to analyze complex experiments involving comparisons between many experimental groups simultaneously while remaining reasonably easy to use for simple experiments. The main idea is to fit a linear model to the expression data for each gene. 
+
+<u>Empirical Bayes and other methods</u> are used to borrow information across genes for the residual variance estimation leading to moderated t-statistics and stabilizing the analysis for experiments with just a small number of arrays. In the following, I'll be using appropriate design and contrast matrices for our linear models and fit a linear model to each gene separately.</div>
+
+#### Differential Gene Expression
+
+<div style="text-align: justify">Differential expression analysis means taking the normalised read count data and performing statistical analysis to discover quantitative changes in expression levels between experimental groups. The goal is to identify genes whose expression differs under different conditions. An important consideration for DGE analysis is correction for multiple testing.</div>
+
+#### Gene Set Enrichment Analysis
+
+<div style="text-align: justify">Functional enrichment analysis is a method to identify classes of genes or proteins that are over-represented in a large set of genes or proteins, and may have an association with disease phenotypes. The method uses statistical approaches to identify significantly enriched or depleted groups of genes.</div>
+
+#### Microarrays Limitations
+
+<div style="text-align: justify">Hybridisation-based approaches are high throughput and relatively inexpensive, but have several limitations which include:<br/>
+a) the reliance upon existing knowledge about the genome sequence.<br/>
+b) the high background levels owing to cross-hybridisation.<br/>
+c) a limited dynamic range of detection owing to both background and saturation signals.<br/>
+d) comparing expression levels across different experiments is often difficult and can require complicated normalisation methods.
+<br/></div>
+
+# List Of Packages
+
+<div style="text-align: justify">To analyze microarray data, I need a specific R package, called Bioconductor. However, Bioconductor uses functions and object from various other R packages, so I need to install several R packages. Additionally, I will need an R-package for making graphs of the data, called ggplot2. In order to use the installed R and BioConductor packages in R, I have to load them first.<br />
+Bioconductor is object-oriented R. It means that a package consists of classes. The classes define the behaviour and characteristics of a set of similar objects that belong to the class. The characteristics that objects of a class can have are called slots while the behaviour of the objects (the actions they can do) is described by the methods of a class.<br />
+
+```{r packages,warning=FALSE,message=FALSE}
+library(Biobase) #package that contains functions needed for microarray data analysis.
+library(oligo) #A package to analyze oligonucleotide arrays at probe-level. It currently supports Affymetrix (CEL files) and standardized data structures to represent genomic data.
+library(limma) #Data analysis, linear models and differential expression for microarray data.
+
+library(gplots) #plotting data.
+library(ggplot2) #Create Elegant Data Visualisations Using the Grammar of Graphics.
+library(ggcorrplot) #provides a solution for reordering the correlation matrix and displays the significance level on the plot. It also includes a function for computing a matrix of correlation p-values.
+
+library(preprocessCore) #A library of core preprocessing routines.
+library(plotly) #data analytics and visualization tools.
+library(wesanderson) #A Wes Anderson Palette Generator.
+library(dplyr) #package which provides a set of tools for efficiently manipulating datasets.
+library(ggpubr) #facilitates the creation of beautiful ggplot2-based graphs for researcher with non-advanced programming backgrounds.
+library(knitr) #provides a general-purpose tool for dynamic report generation in R.
+```
+
+<u>**PROJECT PART I - ANALYSIS OF MICROARRAY EXPERIMENT**</u>
+
+Microarrays can be used in many types of experiments. Gene expression profiling is by far the most common use of microarray technology. The two colour microarrays can be used for this type of experiment. The process of analysing gene expression data involves:<br />
+1) Feature extraction<br />
+2) Quality control<br />
+3) Normalisation<br />
+4) Differential expression analysis<br />
+5) Biological interpretation of the results</div>
+
+# Affymetrix Human Gene 2.1 ST Array Pipeline
+
+<div style="text-align: justify">The Human Gene 2.1 ST Array provides the most accurate, sensitive, and comprehensive measurement of protein coding and long intergenic non-coding RNA transcripts.</div>
+
+## Open CEL-files From Newer Affymetrix Arrays (HuGene21ST)
+
+<div style="text-align: justify">The list.files() command should be used to obtain the list of CEL files in the folder that was specified by the celpath. Then I will import all the CEL files by a single command using the read.celfiles() method.
+
+```{r,warning=FALSE,message=FALSE}
+celpath <- "~/Desktop/oliver/HuGene21ST/"
+#import CEL files containing raw probe-level data into an R FeatureSet object
+list <- list.files(celpath,full.names=TRUE)
+data <- read.celfiles(list)
+```
+
+The data is now a specific FeatureSet object containing the data from my CEL files.</div>
+
+## Data Exploration
+
+### Some Initial Statistics
+
+<div style="text-align: justify">The rows represent the microarray probes while the columns represent one microarray.
+The expression intensity values are in the assayData sub-object exprs and can be accessed by the exprs() function.</div><br />
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+cat("The number of microarray probes is equal to",dim(data)[1],"and the number of microarray samples is equal to",dim(data)[2],"\n")
+cat("The type of the raw data is an",class(data),"\n")
+```
+
+### Retrieving Information About The Raw Data
+
+<div style="text-align: justify">How to retrieve intensities of specific rows in the CEL files? There are two methods exprs() and intensity() that can obtain intensity data. Both methods return the same result: a matrix with intensities of all probes. 
+
+```{r,warning=FALSE,message=FALSE}
+expr <- oligo::exprs(data)
+expr[1:10,1:10]
+```
+
+How to retrieve intensities of PM probes of specific rows in the CEL files? I use the pm() function.
+
+```{r,warning=FALSE,message=FALSE}
+pm <- oligo::pm(data)
+pm[1:10,1:10]
+```
+
+Apart from the expression data itself, microarray data need to include information about the samples that were hybridized to the arrays. One of them is called phenoData. It contains labels for the samples. However, for most data sets the phenoData has not been defined. How to retrieve the sample annotation of the data?
+
+```{r,warning=FALSE,message=FALSE}
+ph <- data@phenoData; ph
+```
+
+How to retrieve the probe annotation of the data?
+
+```{r,warning=FALSE,message=FALSE}
+feat <- data@featureData
+feat@data
+```
+
+But as I see, the featureData has not been defined. I'll also retrieve the number of probes represented on the arrays.</div>
+
+```{r,warning=FALSE,message=FALSE}
+length(probeNames(data))
+```
+
+### Checking For Missing Values
+
+```{r,warning=FALSE,message=FALSE}
+NA_values <- which(is.na(Biobase::exprs(data)), arr.ind=T)
+
+NaN_values <- which(apply(Biobase::exprs(data), 2, function(x) all(is.nan(x))))
+
+infinite_values <- which(apply(Biobase::exprs(data), 2, function(x) all(is.infinite(x))))
+
+blank_values <- function (x) {sum(x=="") }
+bvalues <- apply(Biobase::exprs(data), 2,blank_values); bvalues<-as.character(bvalues);count<-0
+for(index in 1:length(bvalues)){
+  if(bvalues[index]!=0){
+    count=count+1 } }
+```
+
+<div style="text-align: justify">This table summarizes the number of missing values in this GeneFeatureSet.</div>
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+x <- matrix(nrow = 4,ncol = 1,byrow = F)
+colnames(x) <- c("Count")
+rownames(x) <- c("NA values","NaN values","Infinite values","Blank values")
+x[1,1] <- dim(NA_values)[1]
+x[2,1] <- length(NaN_values)
+x[3,1] <- length(infinite_values)
+x[4,1] <- count
+var <- as.table(x); knitr::kable(var)
+```
+
+## Quality Control
+
+<div style="text-align: justify">Since the phenoData object does not contain any information, Bioconductor will just give the CEL-files an index 1-326. However, the phenoData will be used as labels in plots. I am going to give the samples more accurate names so they can be used in the plots that I am going to create.</div><br />
+
+```{r,warning=FALSE,message=FALSE}
+ph@data[ ,1] <- c("control1","control2","control3","control4","control5","control6","control7","control8","sPTD1","sPTD2","control9","control10","control11","control12","control13","control14","control15","control16","control17","control18","control19","control20","control21","control22","control23","control24","control25","control26","control27","control28","sPTD3","control29","control30","control31","control32","control33","control34","control35","control36","control37","control38","control39","control40","PPROM1","PPROM2","control41","control42","control43","control44","control45","control46","control47","control48","control49","control50","sPTD4","sPTD5","control51","control52","sPTD6","sPTD7","control53","control54","control55","control56","control57","control58","control59","control60","control61","control62","control63","control64","control65","control66","control67","control68","PPROM3","sPTD8","sPTD9","control69","control70","control71","control72","PPROM4","PPROM5","sPTD10","sPTD11","control73","control74","control75","control76","PPROM6","PPROM7","control77","control78","PPROM8","PPROM9","control79","control80","control81","control82","control83","control84","control85","control86","PPROM10","PPROM11","PPROM12","PPROM13","control87","control88","control89","control90","control91","control92","control93","control94","control95","control96","PPROM14","control97","control98","control99","control100","PPROM15","PPROM16","control101","control102","control103","control104","control105","control106","control107","control108","PPROM17","PPROM18","control109","control110","control111","control112","sPTD12","sPTD13","PPROM19","PPROM20","PPROM21","control113","control114","control115","control116","PPROM22","PPROM23","control117","control118","control119","control120","control121","control122","PPROM24","PPROM25","control123","control124","control125","control126","control127","control128","PPROM26","PPROM27","control129","control130","control131","control132","control133","control134","control135","control136","sPTD14","sPTD15","sPTD16","sPTD17","control137","control138","control139","control140","PPROM28","PPROM29","control141","control142","control143","control144","PPROM30","PPROM31","control145","control146","control147","control148","control149","control150","control151","control152","control153","control154","control155","control156","control157","control158","control159","control160","control161","control162","control163","control164","PPROM32","PPROM33","control165","control166","control167","control168","control169","control170","PPROM34","PPROM35","control171","control172","PPROM36","PPROM37","PPROM38","PPROM39","control173","control174","PPROM40","PPROM41","control175","control176","control177","control178","control179","control180","control181","control182","PPROM42","PPROM43","control183","control184","PPROM44","PPROM45","PPROM46","PPROM47","PPROM48","PPROM49","sPTD18","sPTD19","PPROM50","PPROM51","sPTD20","sPTD21","PPROM52","PPROM53","PPROM54","PPROM55","PPROM56","PPROM57","control185","control186","control187","control188","control189","control190","control191","control192","sPTD22","sPTD23","PPROM58","PPROM59","control193","control194","sPTD24","sPTD25","control195","control196","PPROM60","PPROM61","control197","control198","control199","control200","control201","control202","control203","control204","control205","control206","control207","control208","sPTD26","sPTD27","control209","control210","control211","control212","control213","control214","control215","control216","control217","control218","sPTD28","sPTD29","control219","control220","control221","control222","control223","control224","control225","control226","control227","control228","PPROM62","PPROM63","PPROM64","PPROM65","PPROM66","PPROM67","PPROM68","PPROM69"); ph
+```
+
+### Multivarious Plots Creation
+
+<div style="text-align: justify">**It's time to create some plot to assess the quality of the data.**
+
+MA plots are developed for two-color arrays to detect differences between the two color labels on the same array. The MA plot shows to what extent the variability in expression depends on the expression level.<br />
+<u>In an MA-plot</u>, A is plotted versus M:<br />
+M is the difference between the intensity of a probe on the array and the median intensity of that probe over all arrays; Formula: M = logPMInt_array - logPMInt_medianarray<br />
+A is the average of the intensity of a probe on that array and the median intesity of that probe over all arrays; Formula: A = (logPMInt_array + logPMInt_medianarray)/2<br />
+
+I'm going to draw MA plots for the first few microarrays, because plotting above ten arrays is computationally expensive. The which argument allows me to specify which array to compare with the median array. Note that I didn't use the par() method because for better and proper visualization/clarity of these MA plots. 
+
+```{r,warning=FALSE,message=FALSE}
+for(i in 1:3){
+  MAplot(data,which=i)
+}
+```
+
+Ideally, the cloud of data points should be centered around M=0 (blue line). Additionally, the variability of the M values should be similar for different A values (average intensities). **I also see that the spread of the cloud increases with the average intensity: the loess curve (red line) moves further and further away from M=0 when A increases. To remove (some of) this dependency, I should normalize the data.**
+
+I'll then check for distribution of signal value across the samples.</div>
+
+```{r,warning=FALSE,message=FALSE}
+oligo::boxplot(data, target = "core", main = "Boxplot of log2-intensitites for the raw data", las=2,names=c("control1","control2","control3","control4","control5","control6","control7","control8","sPTD1","sPTD2","control9","control10","control11","control12","control13","control14","control15","control16","control17","control18","control19","control20","control21","control22","control23","control24","control25","control26","control27","control28","sPTD3","control29","control30","control31","control32","control33","control34","control35","control36","control37","control38","control39","control40","PPROM1","PPROM2","control41","control42","control43","control44","control45","control46","control47","control48","control49","control50","sPTD4","sPTD5","control51","control52","sPTD6","sPTD7","control53","control54","control55","control56","control57","control58","control59","control60","control61","control62","control63","control64","control65","control66","control67","control68","PPROM3","sPTD8","sPTD9","control69","control70","control71","control72","PPROM4","PPROM5","sPTD10","sPTD11","control73","control74","control75","control76","PPROM6","PPROM7","control77","control78","PPROM8","PPROM9","control79","control80","control81","control82","control83","control84","control85","control86","PPROM10","PPROM11","PPROM12","PPROM13","control87","control88","control89","control90","control91","control92","control93","control94","control95","control96","PPROM14","control97","control98","control99","control100","PPROM15","PPROM16","control101","control102","control103","control104","control105","control106","control107","control108","PPROM17","PPROM18","control109","control110","control111","control112","sPTD12","sPTD13","PPROM19","PPROM20","PPROM21","control113","control114","control115","control116","PPROM22","PPROM23","control117","control118","control119","control120","control121","control122","PPROM24","PPROM25","control123","control124","control125","control126","control127","control128","PPROM26","PPROM27","control129","control130","control131","control132","control133","control134","control135","control136","sPTD14","sPTD15","sPTD16","sPTD17","control137","control138","control139","control140","PPROM28","PPROM29","control141","control142","control143","control144","PPROM30","PPROM31","control145","control146","control147","control148","control149","control150","control151","control152","control153","control154","control155","control156","control157","control158","control159","control160","control161","control162","control163","control164","PPROM32","PPROM33","control165","control166","control167","control168","control169","control170","PPROM34","PPROM35","control171","control172","PPROM36","PPROM37","PPROM38","PPROM39","control173","control174","PPROM40","PPROM41","control175","control176","control177","control178","control179","control180","control181","control182","PPROM42","PPROM43","control183","control184","PPROM44","PPROM45","PPROM46","PPROM47","PPROM48","PPROM49","sPTD18","sPTD19","PPROM50","PPROM51","sPTD20","sPTD21","PPROM52","PPROM53","PPROM54","PPROM55","PPROM56","PPROM57","control185","control186","control187","control188","control189","control190","control191","control192","sPTD22","sPTD23","PPROM58","PPROM59","control193","control194","sPTD24","sPTD25","control195","control196","PPROM60","PPROM61","control197","control198","control199","control200","control201","control202","control203","control204","control205","control206","control207","control208","sPTD26","sPTD27","control209","control210","control211","control212","control213","control214","control215","control216","control217","control218","sPTD28","sPTD29","control219","control220","control221","control222","control223","control224","control225","control226","control227","control228","PPROM62","PPROM63","PPROM64","PPROM65","PPROM66","PPROM67","PPROM68","PPROM69"),col=c("red","red","red","red","red","red","red","red","green","green","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","green","red","red","red","red","red","red","red","red","red","red","red","red","blue","blue","red","red","red","red","red","red","red","red","red","red","green","green","red","red","green","green","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","blue","green","green","red","red","red","red","blue","blue","green","green","red","red","red","red","blue","blue","red","red","blue","blue","red","red","red","red","red","red","red","red","blue","blue","blue","blue","red","red","red","red","red","red","red","red","red","red","blue","red","red","red","red","blue","blue","red","red","red","red","red","red","red","red","blue","blue","red","red","red","red","green","green","blue","blue","blue","red","red","red","red","blue","blue","red","red","red","red","red","red","blue","blue","red","red","red","red","red","red","blue","blue","red","red","red","red","red","red","red","red","green","green","green","green","red","red","red","red","blue","blue","red","red","red","red","blue","blue","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","blue","blue","red","red","red","red","red","red","blue","blue","red","red","blue","blue","blue","blue","red","red","blue","blue","red","red","red","red","red","red","red","red","blue","blue","red","red","blue","blue","blue","blue","blue","blue","green","green","blue","blue","green","green","blue","blue","blue","blue","blue","blue","red","red","red","red","red","red","red","red","green","green","blue","blue","red","red","green","green","red","red","blue","blue","red","red","red","red","red","red","red","red","red","red","red","red","green","green","red","red","red","red","red","red","red","red","red","red","green","green","red","red","red","red","red","red","red","red","red","red","blue","blue","blue","blue","blue","blue","blue","blue"))
+```
+
+## Data Normalization
+
+<div style="text-align: justify">**There are many sources of noise in microarray experiments:**<br />
+1) Different amounts of RNA used for labeling and hybridization<br />
+2) Imperfections on the array surface<br />
+3) Imperfect synthesis of the probes<br />
+4) Differences in hybridization conditions<br />
+Systematic differences between the samples that are due to noise rather than true biological variability should be removed in order to make biologically meaningful conclusions about the data.</div><br />
+
+### Robust Multi-array Average
+
+<div style="text-align: justify">**The standard method for normalization is RMA. This latter is one of the few normalization methods that only uses the PM probes.** But how to normalize the data using RMA? The rma() method produces a data matrix for Affymetrix arrays. The input for rma() function is an FeatureSet object while its output is an ExpressionSet object with the data matrix containing the normalized log-intensities in the exprs slot.<br />
+
+```{r,warning=FALSE,message=FALSE}
+data.rma <- oligo::rma(data)
+data.matrix <- Biobase::exprs(data.rma)
+```
+
+Normalization can also be done using the GCRMA algorithm. GCRMA is based on RMA, having all the good sides of RMA. The difference lies in the background correction, all other steps are the same. GCRMA corrects for non-specific binding to the probes in contrast to RMA which completely ignores the issue of non-specific binding.</div>
+
+### Checking The Effect Of The Normalization
+
+<div style="text-align: justify">I'll re-visualize the first few MA plots. 
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+for(i in 1:3){
+  MAplot(data.matrix,which=i)
+}
+```
+
+When I compare this plot to the one created for the raw intensities, I see a much more symmetric and even spread of the data indicating that the dependence of the variability on the average expression level is not as strong as it was before normalization.
+
+Not only MA plots, but boxplots will show us the comparison between the raw and the normalized data. I will show the first few arrays for better clarity and proper visualization of these boxplots.<br />
+
+<u>Without using ggplot:</u>
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+oligo::boxplot(data.rma,target="core",main="Boxplot of log2-intensitites for the normalized data",las=2,names=c("control1","control2","control3","control4","control5","control6","control7","control8","sPTD1","sPTD2","control9","control10","control11","control12","control13","control14","control15","control16","control17","control18","control19","control20","control21","control22","control23","control24","control25","control26","control27","control28","sPTD3","control29","control30","control31","control32","control33","control34","control35","control36","control37","control38","control39","control40","PPROM1","PPROM2","control41","control42","control43","control44","control45","control46","control47","control48","control49","control50","sPTD4","sPTD5","control51","control52","sPTD6","sPTD7","control53","control54","control55","control56","control57","control58","control59","control60","control61","control62","control63","control64","control65","control66","control67","control68","PPROM3","sPTD8","sPTD9","control69","control70","control71","control72","PPROM4","PPROM5","sPTD10","sPTD11","control73","control74","control75","control76","PPROM6","PPROM7","control77","control78","PPROM8","PPROM9","control79","control80","control81","control82","control83","control84","control85","control86","PPROM10","PPROM11","PPROM12","PPROM13","control87","control88","control89","control90","control91","control92","control93","control94","control95","control96","PPROM14","control97","control98","control99","control100","PPROM15","PPROM16","control101","control102","control103","control104","control105","control106","control107","control108","PPROM17","PPROM18","control109","control110","control111","control112","sPTD12","sPTD13","PPROM19","PPROM20","PPROM21","control113","control114","control115","control116","PPROM22","PPROM23","control117","control118","control119","control120","control121","control122","PPROM24","PPROM25","control123","control124","control125","control126","control127","control128","PPROM26","PPROM27","control129","control130","control131","control132","control133","control134","control135","control136","sPTD14","sPTD15","sPTD16","sPTD17","control137","control138","control139","control140","PPROM28","PPROM29","control141","control142","control143","control144","PPROM30","PPROM31","control145","control146","control147","control148","control149","control150","control151","control152","control153","control154","control155","control156","control157","control158","control159","control160","control161","control162","control163","control164","PPROM32","PPROM33","control165","control166","control167","control168","control169","control170","PPROM34","PPROM35","control171","control172","PPROM36","PPROM37","PPROM38","PPROM39","control173","control174","PPROM40","PPROM41","control175","control176","control177","control178","control179","control180","control181","control182","PPROM42","PPROM43","control183","control184","PPROM44","PPROM45","PPROM46","PPROM47","PPROM48","PPROM49","sPTD18","sPTD19","PPROM50","PPROM51","sPTD20","sPTD21","PPROM52","PPROM53","PPROM54","PPROM55","PPROM56","PPROM57","control185","control186","control187","control188","control189","control190","control191","control192","sPTD22","sPTD23","PPROM58","PPROM59","control193","control194","sPTD24","sPTD25","control195","control196","PPROM60","PPROM61","control197","control198","control199","control200","control201","control202","control203","control204","control205","control206","control207","control208","sPTD26","sPTD27","control209","control210","control211","control212","control213","control214","control215","control216","control217","control218","sPTD28","sPTD29","control219","control220","control221","control222","control223","control224","control225","control226","control227","control228","PPROM62","PPROM63","PPROM64","PPROM65","PPROM66","PPROM67","PPROM68","PPROM69"),col = c("red","red","red","red","red","red","red","red","green","green","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","green","red","red","red","red","red","red","red","red","red","red","red","red","blue","blue","red","red","red","red","red","red","red","red","red","red","green","green","red","red","green","green","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","blue","green","green","red","red","red","red","blue","blue","green","green","red","red","red","red","blue","blue","red","red","blue","blue","red","red","red","red","red","red","red","red","blue","blue","blue","blue","red","red","red","red","red","red","red","red","red","red","blue","red","red","red","red","blue","blue","red","red","red","red","red","red","red","red","blue","blue","red","red","red","red","green","green","blue","blue","blue","red","red","red","red","blue","blue","red","red","red","red","red","red","blue","blue","red","red","red","red","red","red","blue","blue","red","red","red","red","red","red","red","red","green","green","green","green","red","red","red","red","blue","blue","red","red","red","red","blue","blue","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","blue","blue","red","red","red","red","red","red","blue","blue","red","red","blue","blue","blue","blue","red","red","blue","blue","red","red","red","red","red","red","red","red","blue","blue","red","red","blue","blue","blue","blue","blue","blue","green","green","blue","blue","green","green","blue","blue","blue","blue","blue","blue","red","red","red","red","red","red","red","red","green","green","blue","blue","red","red","green","green","red","red","blue","blue","red","red","red","red","red","red","red","red","red","red","red","red","green","green","red","red","red","red","red","red","red","red","red","red","green","green","red","red","red","red","red","red","red","red","red","red","blue","blue","blue","blue","blue","blue","blue","blue"))
+```
+
+<u>Using ggplot: How to create a box plot of normalized intensities?</u><br/>
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+sampleNames = vector()
+normlogs = vector()
+for (i in 1:30) {
+sampleNames = c(sampleNames,rep(ph@data[i,1],dim(data.matrix)[1]))
+normlogs = c(normlogs,data.matrix[,i]) }
+
+normData = data.frame(norm_logInt=normlogs,sampleName=sampleNames)
+
+#drawing the plot
+dataBox = ggplot(normData, aes(sampleName,norm_logInt))
+dataBox + geom_boxplot() + ylim(2,16) + ggtitle("after normalization") + ggpubr::rotate_x_text()
+```
+
+After normalization, none of the samples should stand out from the rest. The different arrays should have the same (or at least a very comparable) median expression level. Also the scale of the boxes should be almost the same indicating that also the spread of the intensity values on the different arrays is comparable.<br/></div>
+
+## Differential Gene Expression
+
+<div style="text-align: justify">The identification of DE genes is not done by the affy nor the oligo package but by the limma package, which uses the output of the rma() method called data.rma as input.</div>
+
+### Three groups of samples
+
+<div style="text-align: justify">**I will now compare sPTD and PPROM to a set of Control women.**
+
+Firstly, I need to tell limma which samples are replicates and which samples belong to different groups. To this end, I will add a second column with sample annotation describing the source of each sample & I will give this new column a name.
+
+```{r,warning=FALSE,message=FALSE}
+ph@data[ ,2] <- c("control","control","control","control","control","control","control","control","sPTD","sPTD","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","sPTD","control","control","control","control","control","control","control","control","control","control","control","control","PPROM","PPROM","control","control","control","control","control","control","control","control","control","control","sPTD","sPTD","control","control","sPTD","sPTD","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","PPROM","sPTD","sPTD","control","control","control","control","PPROM","PPROM","sPTD","sPTD","control","control","control","control","PPROM","PPROM","control","control","PPROM","PPROM","control","control","control","control","control","control","control","control","PPROM","PPROM","PPROM","PPROM","control","control","control","control","control","control","control","control","control","control","PPROM","control","control","control","control","PPROM","PPROM","control","control","control","control","control","control","control","control","PPROM","PPROM","control","control","control","control","sPTD","sPTD","PPROM","PPROM","PPROM","control","control","control","control","PPROM","PPROM","control","control","control","control","control","control","PPROM","PPROM","control","control","control","control","control","control","PPROM","PPROM","control","control","control","control","control","control","control","control","sPTD","sPTD","sPTD","sPTD","control","control","control","control","PPROM","PPROM","control","control","control","control","PPROM","PPROM","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","control","PPROM","PPROM","control","control","control","control","control","control","PPROM","PPROM","control","control","PPROM","PPROM","PPROM","PPROM","control","control","PPROM","PPROM","control","control","control","control","control","control","control","control","PPROM","PPROM","control","control","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","sPTD","sPTD","PPROM","PPROM","sPTD","sPTD","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","control","control","control","control","control","control","control","control","sPTD","sPTD","PPROM","PPROM","control","control","sPTD","sPTD","control","control","PPROM","PPROM","control","control","control","control","control","control","control","control","control","control","control","control","sPTD","sPTD","control","control","control","control","control","control","control","control","control","control","sPTD","sPTD","control","control","control","control","control","control","control","control","control","control","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM")
+colnames(ph@data)[2] <- "level"; ph@data
+```
+
+So, the factor that determines the grouping will have 3 levels.
+
+```{r,warning=FALSE,message=FALSE}
+groups <- ph@data$level
+f <- factor(groups,levels=c("control","sPTD","PPROM"))
+```
+
+Then, I need to create a design matrix,which is a matrix of values of the grouping variable. ANOVA needs such a matrix to know which samples belong to which group. Since limma performs an ANOVA, it needs such a design matrix. I will create it using the model.matrix() method. The argument of the model.matrix method is a model formula.
+
+```{r,warning=FALSE,message=FALSE}
+design <- model.matrix(~ 0 + f)
+colnames(design) <- levels(f)
+
+#Fit linear model for each gene given a series of arrays
+#arguments:
+#object: A matrix-like data object containing log-ratios or log-expression values for a series of arrays, with rows corresponding to genes and columns to samples. Any type of data object that can be processed by getEAWP is acceptable.
+#design: the design matrix of the microarray experiment, with rows corresponding to arrays and columns to coefficients to be estimated. Defaults to the unit vector meaning that the arrays are treated as replicates.
+data.fit <- lmFit(data.rma, design)
+```
+
+Afterwards, I need to tell limma which groups I want to compare. For this I define a contrast matrix defining the contrasts of interest by using the makeContrasts() method. 
+
+```{r,warning=FALSE,message=FALSE}
+#makeContrasts() -> Construct the contrast matrix corresponding to specified contrasts of a set of parameters.
+cont.matrix <- makeContrasts(a=sPTD-control,b=PPROM-control,c=sPTD-PPROM,levels=design)
+
+#contrasts.fit() -> Given a linear model fit to microarray data, compute estimated coefficients and standard errors for a given set of contrasts.
+data.contr <- contrasts.fit(data.fit,cont.matrix)
+
+#eBayes() -> Given a microarray linear model fit, compute moderated t-statistics, moderated F-statistic, and log-odds of differential expression by empirical Bayes moderation of the standard errors towards a common value.
+data.fit.eb <- eBayes(data.contr)
+data.fit.eb
+```
+
+I will view now the results of the ANOVA in the slots of the data.fit.eb object. The statistic that is calculated in ANOVA is the F-statistic, I may retrieve the F-statistic and its corresponding p-value for each gene in the F and F.p.value slots.
+
+```{r,warning=FALSE,message=FALSE}
+data.fit.eb$F[1:7] 
+data.fit.eb$F.p.value[1:7]
+```
+
+ANOVA is always followed by a series of pairwise comparisons. The t-statistics and the resulting p-values of the pairwise comparisons are stored in the t and p.value slots.
+
+```{r,warning=FALSE,message=FALSE}
+head(data.fit.eb$t)
+head(data.fit.eb$p.value)
+```
+
+```{r,warning=FALSE,message=FALSE}
+data.fit.eb$lods[1:7,]
+```
+
+**The log fold changes can be found in the coefficients slot. This is what we are interested in.**<br/>
+
+```{r,warning=FALSE,message=FALSE}
+data.fit.eb$coefficients[1:30,]
+```
+
+The best way to decide on the number of DE genes I am going to select is via a Volcano plot. A volcano plot is a graph that allows to simultaneously assess the P values (statistical significance) and log ratios (biological difference) of differential expression for the given genes.
+
+```{r,warning=FALSE,message=FALSE}
+volcanoplot(data.fit.eb, coef = 1, highlight = 10,xlim=c(-2,2),ylim=c(0,7),main="Volcano Plot of sPTD v/s control")
+volcanoplot(data.fit.eb, coef = 2, highlight = 10,xlim=c(-2,2),ylim=c(0,7),main="Volcano Plot of PPROM v/s control")
+volcanoplot(data.fit.eb, coef = 3, highlight = 10,xlim=c(-2,2),ylim=c(0,7),main="Volcano Plot of sPTD v/s PPROM")
+```
+
+Volcano plots arrange genes along biological and statistical significance.
+
+Finally, I will adjust for multiple testing and defining DE genes. I am doing a t-test on each gene, meaning that I will be doing more than 20000 t-tests on the data set.</div>
+
+### Adjusting For Multiple Testing
+
+<div style="text-align: justify">Since I have 3 groups for the class variable, the decideTests() method will perform multiple testing adjustment on these p-values. Additionally, it will evaluate for each gene whether the results data.fit.eb fulfill the criteria for differential expression that I specify. **The adjust.method argument specifies which method is used to adjust the p-values for multiple testing.The value BH means that Benjamini-Hochberg correction will be used. The p.value argument specifies the FDR and the lfc argument specifies the minimal fold change that is required to be considered DE.**<br />
+The method argument specifies how the p-values are adjusted: global means that all contrasts are considered independent.<br />
+
+```{r,warning=FALSE,message=FALSE}
+DEresults <- decideTests(data.fit.eb,method='global',adjust.method="BH",p.value=0.05,lfc=0.5) 
+#method: "global" means all contrasts are considered independent. The method will treat the entire matrix of t-statistics as a single vector of independent tests. It is the simplest and obvious choice if you want to do multiple testing in both directions simultaneously. The p-value cutoff will be consistent across all contrasts.
+#adjust.method: "BH" means Benjamini-Hochberg correction or "BY" or "holm".
+
+DEresults <- as.data.frame(DEresults)
+colnames(DEresults) <- c("sPTD-control","PPROM-control","sPTD-PPROM")
+
+ups_sPTDversusControl <- DEresults[DEresults$`sPTD-control`==1, ] #up-regulated genes for sPTD v/s control
+downs_sPTDversusControl <- DEresults[DEresults$`sPTD-control`==-1, ] #down-regulated genes for sPTD v/s control
+
+ups_PPROMversusControl <- DEresults[DEresults$`PPROM-control`==1, ] #up-regulated genes for PPROM v/s control
+downs_PPROMversusControl <- DEresults[DEresults$`PPROM-control`==-1, ] #down-regulated genes for PPROM v/s control
+
+ups_sPTDversusPPROM <- DEresults[DEresults$`sPTD-PPROM`==1, ] #up-regulated genes for sPTD v/s PPROM 
+downs_sPTDversusPPROM  <- DEresults[DEresults$`sPTD-PPROM`==-1, ] #down-regulated genes for sPTD v/s PPROM 
+```
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+dF <- matrix(nrow=2,ncol=3)
+colnames(dF)<-c("sPTD v/s control","PPROM v/s control","sPTD v/s PPROM")
+rownames(dF)<-c("upregulated genes","downregulated genes")
+dF[1,1]<-length(rownames(ups_sPTDversusControl))
+dF[2,1]<-length(rownames(downs_sPTDversusControl))
+dF[1,2]<-length(rownames(ups_PPROMversusControl))
+dF[2,2]<-length(rownames(downs_PPROMversusControl))
+dF[1,3]<-length(rownames(ups_sPTDversusPPROM))
+dF[2,3]<-length(rownames(downs_sPTDversusPPROM))
+knitr::kable(as.data.frame(dF))
+```
+
+Finally, I'll get the annotations of the probes ids.
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+GPL17692.38203.2 <- read.delim("~/Downloads/GPL17692-38203-2.txt")
+
+index1 <- c()
+v1 <- (rownames(ups_sPTDversusControl))
+for(a in v1){ index1 <- c(index1, rownames(GPL17692.38203.2[ GPL17692.38203.2$ID==a, ])) }
+write.table(GPL17692.38203.2 [ index1 , c(1,2,3,4,5,6,8) ], file = "~/Desktop/microarray_analysis/Human Gene 2.1st array /upregulated_sPTDversusControl.xls",col.names=NA,sep="\t",quote=F)
+
+index2 <- c()
+v2 <- (rownames(downs_sPTDversusControl))
+for(b in v2){ index2 <- c(index2, rownames(GPL17692.38203.2[ GPL17692.38203.2$ID==b, ])) }
+write.table(GPL17692.38203.2 [ index2 , c(1,2,3,4,5,6,8) ], file = "~/Desktop/microarray_analysis/Human Gene 2.1st array /downregulated_sPTDversusControl.xls",col.names=NA,sep="\t",quote=F)
+
+index3 <- c()
+v3 <- (rownames(ups_PPROMversusControl))
+for(c in v3){ index3 <- c(index3, rownames(GPL17692.38203.2[ GPL17692.38203.2$ID==c, ])) }
+write.table(GPL17692.38203.2 [ index3 , c(1,2,3,4,5,6,8) ], file = "~/Desktop/microarray_analysis/Human Gene 2.1st array /upregulated_PPROMversusControl.xls",col.names=NA,sep="\t",quote=F)
+
+index4 <- c()
+v4 <- (rownames(ups_sPTDversusPPROM))
+for(d in v4){ index4 <- c(index4, rownames(GPL17692.38203.2[ GPL17692.38203.2$ID==d, ])) }
+write.table(GPL17692.38203.2 [ index4 , c(1,2,3,4,5,6,8) ], file = "~/Desktop/microarray_analysis/Human Gene 2.1st array /upregulated_sPTDversusPPROM.xls",col.names=NA,sep="\t",quote=F)
+
+index5 <- c()
+v5 <- (rownames(downs_sPTDversusPPROM))
+for(e in v5){ index5 <- c(index5, rownames(GPL17692.38203.2[ GPL17692.38203.2$ID==e, ])) }
+write.table(GPL17692.38203.2 [ index5 , c(1,2,3,4,5,6,8) ], file = "~/Desktop/microarray_analysis/Human Gene 2.1st array /downregulated_sPTDversusPPROM.xls",col.names=NA,sep="\t",quote=F)
+```
+
+Having the gene names, I can finally do GO enrichment and pathway enrichment using some tools and/or databases.<br />
+But before that, I'll going to see if they are any housekeeping genes.<br/>
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+variable1 <- GPL17692.38203.2 [ grepl("Housekeeping", GPL17692.38203.2$gene_assignment) , ]
+cat("The number of Housekeeping gene equals to",length(rownames(variable1)),"\n")
+```
+
+I'll now move to the analysis of the second type of array, the Affymetrix HTA 2.0 Array.</div>
+
+# Affymetrix Human Transcriptome Array 2.0 Workflow
+
+<div style="text-align: justify">*This high-resolution Human Transcriptome Array (HTA) 2.0 design contains more than 6 million distinct probes covering coding and non-coding transcripts. 70% of the probes on this array cover exons for coding transcripts, and the remaining 30% of probes on the array cover exon-exon splice junctions and non-coding transcripts. To ensure uniform coverage of the transcriptome, GeneChip HTA 2.0 was designed with approximately ten probes per exon and four probes per exon-exon splice junction. This coverage ensures that I will obtain complete, accurate, and reproducible data with every experiment. In order to make the analysis of this vast amount genetic data seamless, the probes are all arranged into probe sets that translate and summarize my data into gene level and exon level probe sets. GeneChip Human Transcriptome Array 2.0 was designed to aid in human disease research and clinical translational medicine by supporting analysis solutions that take me to biologically meaningful results in days rather than months.*</div>
+
+## Open CEL-files From Newer Affymetrix Arrays (HTA)
+
+<div style="text-align: justify">The list.files() command should be used to obtain the list of CEL files in the folder that was specified by the celpath. Then I will import all the CEL files by a single command using the read.celfiles() method.<br />
+
+```{r,warning=FALSE,message=FALSE}
+celpath <- "~/Desktop/oliver/HTA/"
+#import CEL files containing raw probe-level data into an R object
+list <- list.files(celpath,full.names=TRUE)
+data <- read.celfiles(list)
+```
+
+The data is now a specific FeatureSet object containing the data from my CEL files.</div>
+
+## Data Exploration
+
+### Some Initial Statistics
+
+<div style="text-align: justify">The rows represent the microarray probes while the columns represent one microarray.
+The expression intensity values are in the assayData sub-object exprs and can be accessed by the exprs() function.</div><br />
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+cat("The number of microarray probes is equal to",dim(data)[1],"and the number of microarray samples is equal to",dim(data)[2],"\n")
+cat("The type of the raw_data is an",class(data),"\n")
+```
+
+### Retrieving Informations About The Raw Data
+
+<div style="text-align: justify">How to retrieve intensities of specific rows in the CEL files? There are two methods exprs() and intensity() that can obtain intensity data. Both methods return the same result: a matrix with intensities of all probes. So I am going to used one of them.
+
+```{r,warning=FALSE,message=FALSE}
+int <- oligo::intensity(data)
+int[1:10,1:10]
+```
+
+How to retrieve intensities of PM probes of specific rows in the CEL files? Since I am only working with PM probes, I might want to look at them using the pm() method.
+
+```{r,warning=FALSE,message=FALSE}
+pm <- oligo::pm(data)
+pm[1:10,1:10]
+```
+
+Apart from the expression data itself, microarray data sets need to include information about the samples that were hybridized to the arrays. One of them is called phenoData. It contains labels for the samples. However, for most data sets the phenoData has not been defined. How to retrieve the sample annotation of the data?
+
+```{r,warning=FALSE,message=FALSE}
+ph <- data@phenoData; ph
+```
+
+I'll finally retrieve the first few and last few IDs of the probe sets that are represented on the arrays.</div>
+
+```{r,warning=FALSE,message=FALSE}
+head(featureNames(data))
+tail(featureNames(data))
+```
+
+### Checking Missing Values
+
+<div style="text-align: justify">I'll check for the presence of several types of missing values in this HTAFeatureSet.</div>
+
+```{r,warning=FALSE,message=FALSE}
+NA_values <- which(is.na(Biobase::exprs(data)), arr.ind=T)
+
+NaN_values <- which(apply(Biobase::exprs(data), 2, function(x) all(is.nan(x))))
+
+infinite_values <- which(apply(Biobase::exprs(data), 2, function(x) all(is.infinite(x))))
+
+blank_values <- function (x) {sum(x=="") }
+bvalues <- apply(Biobase::exprs(data), 2,blank_values); bvalues<-as.character(bvalues);count<-0
+for(index in 1:length(bvalues)){
+  if(bvalues[index]!=0){
+    count=count+1 } }
+```
+
+<div style="text-align: justify">This table summarizes the different of missing values count.</div>
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+x <- matrix(nrow = 4,ncol = 1,byrow = F)
+colnames(x) <- c("Count")
+rownames(x) <- c("NA values","NaN values","Infinite values","Blank values")
+x[1,1] <- dim(NA_values)[1]
+x[2,1] <- length(NaN_values)
+x[3,1] <- length(infinite_values)
+x[4,1] <- count
+var <- as.table(x); knitr::kable(var)
+```
+
+## Quality Check
+
+<div style="text-align: justify">Since the phenoData object, that was created in the step where I retrieved the sample annotation, does not contain any information, Bioconductor will just give the CEL-files an index 1-115. However, the phenoData will be used as labels in plots. I am going to give the samples more accurate names so they can be used in the plots that I am going to create.
+
+```{r,warning=FALSE,message=FALSE}
+ph@data[,1] <- c("Control1","Control2","Control3","Control4","Control5","Control6","Control7","Control8","Control9","Control10","Control11","Control12","Control13","Control14","Control15","Control16","Control17","Control18","Control19","Control20","Control21","Control22","Control23","Control24","Control25","Control26","Control27","Control28","Control29","Control30","Control31","Control32","Control33","Control34","Control35","Control36","Control37","Control38","Control39","Control40","Control41","Control42","Control43","Control44","Control45","Control46","Control47","Control48","Control49","Control50","Control51","Control52","Control53","Control54","Control55","Control56","Control57","Control58","Control59","PPROM1","PPROM2","PPROM3","PPROM4","PPROM5","PPROM6","PPROM7","PPROM8","PPROM9","PPROM10","PPROM11","PPROM12","PPROM13","PPROM14","PPROM15","PPROM16","PPROM17","PPROM18","PPROM19","PPROM20","PPROM21","PPROM22","PPROM23","PPROM24","PPROM25","PPROM26","PPROM27","PPROM28","PPROM29","sPTD1","sPTD2","sPTD3","sPTD4","sPTD5","sPTD6","sPTD7","sPTD8","sPTD9","sPTD10","sPTD11","sPTD12","sPTD13","sPTD14","sPTD15","sPTD16","sPTD17","sPTD18","sPTD19","sPTD20","sPTD21","sPTD22","sPTD23","sPTD24","sPTD25","sPTD26","sPTD27"); ph
+```
+
+<u>It's time to create some plots to assess the quality of the data.</u>
+
+The picture of a microarray can show large inconsistencies on an individual array. How to print the raw intensities of a microarray?
+
+```{r,warning=FALSE,message=FALSE}
+image(data[,1], main=ph@data$sample[1])
+```
+
+Another quality control check is to plot boxplot for first few arrays. This latter is a standardized way of displaying the dataset based on a five-number summary: the minimum, the maximum, the sample median, and the first and third quartiles. 
+
+```{r, warning=FALSE,message=FALSE}
+oligo::boxplot(data,ylim = c(0,9),target = "core", main = "Boxplot of log2-intensitites for the raw data",las=2,names=c("Control1","Control2","Control3","Control4","Control5","Control6","Control7","Control8","Control9","Control10","Control11","Control12","Control13","Control14","Control15","Control16","Control17","Control18","Control19","Control20","Control21","Control22","Control23","Control24","Control25","Control26","Control27","Control28","Control29","Control30","Control31","Control32","Control33","Control34","Control35","Control36","Control37","Control38","Control39","Control40","Control41","Control42","Control43","Control44","Control45","Control46","Control47","Control48","Control49","Control50","Control51","Control52","Control53","Control54","Control55","Control56","Control57","Control58","Control59","PPROM1","PPROM2","PPROM3","PPROM4","PPROM5","PPROM6","PPROM7","PPROM8","PPROM9","PPROM10","PPROM11","PPROM12","PPROM13","PPROM14","PPROM15","PPROM16","PPROM17","PPROM18","PPROM19","PPROM20","PPROM21","PPROM22","PPROM23","PPROM24","PPROM25","PPROM26","PPROM27","PPROM28","PPROM29","sPTD1","sPTD2","sPTD3","sPTD4","sPTD5","sPTD6","sPTD7","sPTD8","sPTD9","sPTD10","sPTD11","sPTD12","sPTD13","sPTD14","sPTD15","sPTD16","sPTD17","sPTD18","sPTD19","sPTD20","sPTD21","sPTD22","sPTD23","sPTD24","sPTD25","sPTD26","sPTD27"),col=c("red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue"))
+```
+
+When I look at the boxplot, I see that the intensity distributions of the individual arrays are quite different, indicating the need for an appropriate normalization.
+
+A third quality control is the creation of density estimate for few samples.</div>
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+pmexp <- pm(data)
+sampleNames <- vector(); logs = vector()
+for (i in 56:79) 
+{
+sampleNames <- c(sampleNames,rep(ph@data[i,1],dim(pmexp)[1]))
+logs <- c(logs,log2(pmexp[,i])) 
+}
+logData <- data.frame(logInt=logs,sampleName=sampleNames)
+dataHist <- ggplot(logData, aes(logInt,colour=sampleName))
+dataHist + geom_density() 
+```
+
+## Data Normalization
+
+### Robust Multi-array Average Algorithm
+
+<div style="text-align: justify">The standard method for normalization is RMA, which is one of the few normalization methods that only uses the PM probes.<br/>
+
+```{r,warning=FALSE,message=FALSE}
+data.rma <- oligo::rma(data)
+data.matrix <- Biobase::exprs(data.rma)
+```
+
+Normalization can be also done using the GCRMA algorithm.</div>
+
+### Checking The Effect Of The Normalization
+
+<div style="text-align: justify">After doing normalization, I will need to re-visualize the normalized data. For that, I'll plot boxplots for some microarrays.
+
+```{r, warning=FALSE,message=FALSE,echo=FALSE}
+oligo::boxplot(data.matrix,target = "core", main = "Boxplot of log2-intensitites for the raw data",las=2,names=c("Control1","Control2","Control3","Control4","Control5","Control6","Control7","Control8","Control9","Control10","Control11","Control12","Control13","Control14","Control15","Control16","Control17","Control18","Control19","Control20","Control21","Control22","Control23","Control24","Control25","Control26","Control27","Control28","Control29","Control30","Control31","Control32","Control33","Control34","Control35","Control36","Control37","Control38","Control39","Control40","Control41","Control42","Control43","Control44","Control45","Control46","Control47","Control48","Control49","Control50","Control51","Control52","Control53","Control54","Control55","Control56","Control57","Control58","Control59","PPROM1","PPROM2","PPROM3","PPROM4","PPROM5","PPROM6","PPROM7","PPROM8","PPROM9","PPROM10","PPROM11","PPROM12","PPROM13","PPROM14","PPROM15","PPROM16","PPROM17","PPROM18","PPROM19","PPROM20","PPROM21","PPROM22","PPROM23","PPROM24","PPROM25","PPROM26","PPROM27","PPROM28","PPROM29","sPTD1","sPTD2","sPTD3","sPTD4","sPTD5","sPTD6","sPTD7","sPTD8","sPTD9","sPTD10","sPTD11","sPTD12","sPTD13","sPTD14","sPTD15","sPTD16","sPTD17","sPTD18","sPTD19","sPTD20","sPTD21","sPTD22","sPTD23","sPTD24","sPTD25","sPTD26","sPTD27"),col=c("red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue"))
+```
+
+These boxplots are now aligned, showing that the intensity distributions of the individual microarrays are quite similar.</div>
+
+### About The Principal Component Analysis
+
+<div style="text-align: justify">I will now perform a Principal Component Analysis (PCA) in order to check whether the overall variability of the samples reflects their grouping. But before that, let's see what is PCA and what does it performs?
+
+PCA is a standard technique for visualizing high dimensional data and for data pre-processing. PCA reduces the dimensionality (the number of variables) of a data set by maintaining as much variance as possible.</div>
+
+#### Dimensionality Reduction
+
+<div style="text-align: justify">Low variance can often be assumed to represent undesired background noise. The dimensionality of the data can therefore be reduced, without loss of relevant information, by extracting a lower dimensional component space covering the highest variance.</div>
+
+#### PCA & Bioinformatics
+
+<div style="text-align: justify">Illustrated are three-dimensional gene expression data which are mainly located within a two-dimensional subspace. PCA is used to visualize these data by reducing the dimensionality of the data: the three original variables (genes) are reduced to a lower number of two new variables termed principal components (PCs). 
+Such two-dimensional visualization of the samples allow us to draw qualitative conclusions about the separability of experimental conditions (marked by different colors).
+
+```{r fig.align="center",echo=FALSE, message=FALSE,warning=FALSE}
+knitr::include_graphics("/Users/fatbobmacpro/Desktop/oliver/pics/fig-pca-principal-component-analysis-m.png")
+```
+
+<u>Legend:</u><br />
+<u>Left side:</u> I can identify the two-dimensional plane that optimally describes the highest variance of the data.<br />
+<u>Right side:</u> This two-dimensional subspace can then be rotated and presented as a two-dimensional component space.<br />
+<u>Class:Color</u><br/>
+Control:red<br/>
+PPROM:green<br/>
+sPTD:blue
+
+I'll now create a PCA plot using the prcomp() method.
+
+```{r,warning=FALSE,message=FALSE}
+color<-c("red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","red","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","green","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue")
+
+data.PC <- prcomp(t(data.matrix),scale.=TRUE)
+#t: transpose the element
+#sacle.: a logical value indicating whether the variables should be scaled to have unit variance before the analysis takes place. The default is FALSE for consistency with S, but in general scaling is advisable. Alternatively, a vector of length equal the number of columns of x can be supplied. The value is passed to scale.
+
+plot(data.PC$x[1:115],col=color,ylab="PC1")
+```
+
+Since I have three levels in my data, this leads to a clear distinction between these groups. Not only PCA plots, but histograms also show us the comparison between the raw and the normalized data.</div><br/>
+
+## Differential Gene Expression
+
+<div style="text-align: justify">The identification of DE genes is not done by the affy nor the oligo package but by the limma package. Limma uses the output of the rma() method (data.rma) as input.</div>
+
+### Three groups of samples
+
+<div style="text-align: justify">As an example I will compare spontaneous preterm labor and delivery with intact membranes (sPTD) and preterm premature rupture of the membranes (PPROM) to a set of Control women.
+
+I first need to tell limma which samples are replicates and which samples belong to different groups by providing this information in the phenoData slot of the HTAFeatureSet. To this end, I will add a second column with sample annotation describing the source of each sample. I will then give this new column a name.
+
+```{r,warning=FALSE,message=FALSE}
+ph@data[ ,2] <-c("Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","Control","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","PPROM","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD","sPTD")
+
+colnames(ph@data)[2] <- "level"
+```
+
+So, the factor that determines the grouping will have 3 levels.
+
+```{r,warning=FALSE,message=FALSE}
+groups <- ph@data$level
+f <- factor(groups,levels = c("Control","sPTD","PPROM"))
+```
+
+Then, I need to create a design matrix. ANOVA needs such a matrix to know which samples belong to which group. Since limma performs an ANOVA, it needs such a design matrix. I will create it using the model.matrix() method.
+
+```{r,warning=FALSE,message=FALSE}
+design <- model.matrix(~ 0 + f) 
+colnames(design) <- c("Control","sPTD","PPROM")
+
+#Fit linear model for each gene given a series of arrays
+data.fit <- lmFit(object = data.rma, design = design) 
+```
+
+Afterwards, I need to tell limma which groups I want to compare. For this I define a contrast matrix defining the contrasts (comparisons) of interest by using the makeContrasts() method. 
+
+```{r,warning=FALSE,message=FALSE}
+contrast.matrix <- makeContrasts(a=sPTD-Control,b=PPROM-Control,c=sPTD-PPROM,levels=design)
+data.fit.con <- contrasts.fit(data.fit,contrast.matrix)
+
+data.fit.eb <- eBayes(data.fit.con)
+data.fit.eb
+```
+
+I will view now the results of the ANOVA in the slots of the data.fit.eb object. The statistic that is calculated in ANOVA is the F-statistic, I may retrieve the F-statistic and its corresponding p-value for each gene in the F and F.p.value slots.
+
+```{r,warning=FALSE,message=FALSE}
+head(data.fit.eb$F)
+head(data.fit.eb$F.p.value)
+```
+
+ANOVA is always followed by a series of pairwise comparisons. The t-statistics and the resulting p-values of the pairwise comparisons are stored in the t and p.value slots.
+
+```{r,warning=FALSE,message=FALSE}
+data.fit.eb$t[1:10,]
+data.fit.eb$p.value[1:10,]
+```
+
+```{r,warning=FALSE,message=FALSE}
+data.fit.eb$lods[1:10,]
+```
+
+**The log fold changes can be found in the coefficients slot. This is what we are interested in.**<br/></div>
+
+```{r,warning=FALSE,message=FALSE}
+data.fit.eb$coefficients[1:30,]
+```
+
+### Drawing Volcano Plot
+
+<div style="text-align: justify">The best way to decide on the number of DGE I am going to select is via a volcano plot. I want to find genes that are DE between asymptomatic women and the highlight parameter allows to specify the number of highest scoring genes for which names will be attached on the plot.
+
+```{r,warning=FALSE,message=FALSE}
+volcanoplot(data.fit.eb, coef = 1, highlight = 10,xlim=c(-2,2),ylim=c(0,7),main="Volcano Plot of sPTD v/s control")
+volcanoplot(data.fit.eb, coef = 2, highlight = 10,xlim=c(-2,2),ylim=c(0,7),main="Volcano Plot of PPROM v/s control")
+volcanoplot(data.fit.eb, coef = 3, highlight = 10,xlim=c(-2,2),ylim=c(0,7),main="Volcano Plot of sPTD v/s PPROM")
+```
+
+Volcano plots arrange genes along biological and statistical significance. The X-axis gives the log fold change between the two groups, and the Y-axis represents the p-value of a t-test comparing samples. Hence, the first axis indicates biological impact of the change; the second indicates the statistical evidence of the change. 
+
+Finally, I am doing a t-test on each gene, meaning that I will be doing more than 20000 t-tests on the data set. I have to adjust the p-values of the t-tests for multiple testing.
+Of course my final aim is to generate the DE genes (the genes with the lowest adjusted p-values and the most extreme log fold changes). I will then use the IDs in order to search for functional relations between the genes.</div>
+
+### Adjusting For Multiple Testing
+
+<div style="text-align: justify">Since I have 3 groups for the class variable, the decideTests() method will perform multiple testing adjustment on these p-values. Additionally, it will evaluate for each gene whether the results data.fit.eb fulfill the criteria for differential expression that I specify. **The adjust.method argument specifies which method is used to adjust the p-values for multiple testing.The value BH means that Benjamini-Hochberg correction will be used. The p.value argument specifies the FDR and the lfc argument specifies the minimal fold change that is required to be considered DE.**<br/>
+
+```{r,warning=FALSE,message=FALSE}
+DEresults <- decideTests(data.fit.eb,method='global',adjust.method="BH",p.value=0.05,lfc=0.7) 
+#adjust.method: character string specifying p-value adjustment method. Possible values are "none", "BH", "fdr" (equivalent to "BH"), "BY" and "holm".
+
+DEresults <- as.data.frame(DEresults)
+colnames(DEresults) <- c("sPTD-control","PPROM-control","sPTD-PPROM")
+
+ups_sPTDversusControl <- DEresults[DEresults$`sPTD-control`==1, ] #up-regulated genes for sPTD v/s control
+downs_sPTDversusControl <- DEresults[DEresults$`sPTD-control`==-1, ] #down-regulated genes for sPTD v/s control
+
+ups_PPROMversusControl <- DEresults[DEresults$`PPROM-control`==1, ] #up-regulated genes for PPROM v/s control
+downs_PPROMversusControl <- DEresults[DEresults$`PPROM-control`==-1, ] #down-regulated genes for PPROM v/s control
+
+ups_sPTDversusPPROM <- DEresults[DEresults$`sPTD-PPROM`==1, ] #up-regulated genes for sPTD v/s PPROM 
+downs_sPTDversusPPROM  <- DEresults[DEresults$`sPTD-PPROM`==-1, ] #down-regulated genes for sPTD v/s PPROM 
+```
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+dF <- matrix(nrow=2,ncol=3)
+colnames(dF)<-c("sPTD v/s control","PPROM v/s control","sPTD v/s PPROM")
+rownames(dF)<-c("upregulated genes","downregulated genes")
+dF[1,1]<-length(rownames(ups_sPTDversusControl))
+dF[2,1]<-length(rownames(downs_sPTDversusControl))
+dF[1,2]<-length(rownames(ups_PPROMversusControl))
+dF[2,2]<-length(rownames(downs_PPROMversusControl))
+dF[1,3]<-length(rownames(ups_sPTDversusPPROM))
+dF[2,3]<-length(rownames(downs_sPTDversusPPROM))
+knitr::kable(as.data.frame(dF))
+```
+
+Finally, I'll get the annotations of the probes ids.
+
+```{r,warning=FALSE,message=FALSE}
+GPL17586.45144.4 <- read.delim("~/Downloads/GPL17586-45144-4.txt", comment.char="#")
+
+index1 <- c()
+v1 <- (rownames(ups_sPTDversusControl))
+for(a in v1){ index1 <- c(index1, rownames(GPL17586.45144.4[ GPL17586.45144.4$ID==a, ])) }
+write.table(GPL17586.45144.4 [ index1 , c(1,2,3,4,5,6,8) ], file = "~/Desktop/microarray_analysis/Human Transcriptome Array 2.0 /upregulated_sPTDversusControl.xls",col.names=NA,sep="\t",quote=F)
+
+index2 <- c()
+v2 <- (rownames(downs_sPTDversusControl))
+for(b in v2){ index2 <- c(index2, rownames(GPL17586.45144.4[ GPL17586.45144.4$ID==b, ])) }
+write.table(GPL17586.45144.4 [ index2 , c(1,2,3,4,5,6,8) ], file = "~/Desktop/microarray_analysis/Human Transcriptome Array 2.0 /downregulated_sPTDversusControl.xls",col.names=NA,sep="\t",quote=F)
+
+index3 <- c()
+v3 <- (rownames(ups_PPROMversusControl))
+for(c in v3){ index3 <- c(index3, rownames(GPL17586.45144.4[ GPL17586.45144.4$ID==c, ])) }
+write.table(GPL17586.45144.4 [ index3 , c(1,2,3,4,5,6,8) ], file = "~/Desktop/microarray_analysis/Human Transcriptome Array 2.0 /upregulated_PPROMversusControl.xls",col.names=NA,sep="\t",quote=F)
+
+index4 <- c()
+v4 <- (rownames(downs_PPROMversusControl))
+for(d in v4){ index4 <- c(index4, rownames(GPL17586.45144.4[ GPL17586.45144.4$ID==d, ])) }
+write.table(GPL17586.45144.4 [ index4 , c(1,2,3,4,5,6,8) ], file = "~/Desktop/microarray_analysis/Human Transcriptome Array 2.0 /upregulated_sPTDversusPPROM.xls",col.names=NA,sep="\t",quote=F)
+
+index5 <- c()
+v5 <- (rownames(downs_sPTDversusPPROM))
+for(e in v5){ index5 <- c(index5, rownames(GPL17586.45144.4[ GPL17586.45144.4$ID==e, ])) }
+write.table(GPL17586.45144.4 [ index5 , c(1,2,3,4,5,6,8) ], file = "~/Desktop/microarray_analysis/Human Transcriptome Array 2.0 /downregulated_sPTDversusPPROM.xls",col.names=NA,sep="\t",quote=F)
+```
+
+Having the gene names, I can finally do some enrichment analysis such as network analysis and pathways.<br/>
+But before that, I'll going to see if they are any housekeeping genes.<br/>
+
+```{r,warning=FALSE,echo=FALSE,message=FALSE}
+variable1 <- GPL17586.45144.4 [ grepl("Housekeeping", GPL17586.45144.4$gene_assignment) , ]
+cat("The number of Housekeeping gene equals to",length(rownames(variable1)),"\n")
+```
+
+This brings us to the end of the workflow for differential gene expression using Affymetrix microarrays.</div>
